@@ -52,7 +52,7 @@ public class Consumer {
 		props.setProperty(KinesisConfigConstants.CONFIG_AWS_CREDENTIALS_PROVIDER_BASIC_ACCESSKEYID, pt.get("accesskey"));
 		props.setProperty(KinesisConfigConstants.CONFIG_AWS_CREDENTIALS_PROVIDER_BASIC_SECRETKEY, pt.get("secretkey"));
 		props.setProperty(KinesisConfigConstants.CONFIG_AWS_REGION, "eu-central-1");
-	//	props.setProperty(KinesisConfigConstants.CONFIG_STREAM_INIT_POSITION_TYPE, "TRIM_HORIZON");
+		props.setProperty(KinesisConfigConstants.CONFIG_STREAM_INIT_POSITION_TYPE, pt.get("start", "TRIM_HORIZON"));
 
 		FlinkKinesisConsumer<String> consumer = new FlinkKinesisConsumer<>(pt.getRequired("stream"), new SimpleStringSchema(), props);
 		DataStream<String> jsonStream = see.addSource(consumer);

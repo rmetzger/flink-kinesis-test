@@ -50,7 +50,7 @@ public class Generator {
 				new SimpleStringSchema());
 
 		kinesis.setFailOnError(true);
-		kinesis.setDefaultStream("flink-test");
+		kinesis.setDefaultStream(pt.get("stream", "flink-test"));
 		kinesis.setDefaultPartition("0");
 
 		jsonStream.addSink(kinesis).setParallelism(1);
